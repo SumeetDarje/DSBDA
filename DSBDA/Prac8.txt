@@ -1,0 +1,77 @@
+Data Visualization I
+1. Use the inbuilt dataset 'titanic'. The dataset contains 891 rows and contains information
+about the passengers who boarded the unfortunate Titanic ship. Use the Seaborn library to
+see if we can find any patterns in the data.
+2. Write a code to check how the price of the ticket (column name: 'fare') for each passenger
+is distributed by plotting a histogram.
+
+
+pip install seaborn
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+titanic = sns.load_dataset('titanic')
+
+
+titanic.head()
+
+
+sns.displot(titanic['age'], bins = 10)
+
+
+sns.displot(titanic['age'], bins = 10, kde = False)
+
+
+sns.jointplot(x = titanic['age'], y = titanic['fare'], kind = 'scatter')
+sns.jointplot(x = titanic['age'], y = titanic['fare'], kind = 'hex')
+
+
+sns.rugplot(titanic['fare'])
+
+
+sns.barplot(x = 'sex', y = 'age', data = titanic)
+
+
+sns.barplot(x = 'sex', y = 'age', data = titanic, estimator = np.std)
+
+
+sns.countplot(x = 'sex', data = titanic)
+
+
+sns.boxplot(x = 'sex', y = 'age', data = titanic)
+
+
+sns.violinplot(x = 'sex', y = 'age', data = titanic)
+
+
+sns.stripplot(x = 'sex', y = 'age', data = titanic, jitter=False)
+
+
+sns.stripplot(x = 'sex', y = 'age', data = titanic, jitter=True)
+
+
+sns.stripplot(x = 'sex', y = 'age', data = titanic, jitter=True, hue = 'survived')
+
+
+sns.swarmplot(x = 'sex', y = 'age', data = titanic)
+
+
+sns.swarmplot(x = 'sex', y = 'age', data = titanic, hue = 'survived')
+
+
+titanic.corr(numeric_only= True)
+
+
+sns.heatmap(titanic.corr(numeric_only= True))
+
+
+sns.heatmap(titanic.corr(numeric_only= True), annot = True)
+
+
+sns.heatmap(titanic.corr(numeric_only= True), cmap = 'YlGnBu')
+
+
+plt.hist(x = titanic['fare'], bins = 20)

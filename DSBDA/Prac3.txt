@@ -1,0 +1,56 @@
+Descriptive Statistics - Measures of Central Tendency and variability
+Perform the following operations on any open source dataset (e.g., data.csv)
+1. Provide summary statistics (mean, median, minimum, maximum, standard deviation) for
+a dataset (age, income etc.) with numeric variables grouped by one of the qualitative
+(categorical) variable. For example, if your categorical variable is age groups and
+quantitative variable is income, then provide summary statistics of income grouped by the
+age groups. Create a list that contains a numeric value for each response to the categorical
+variable.
+2. Write a Python program to display some basic statistical details like percentile, mean,
+standard deviation etc. of the species of ‘Iris-setosa’, ‘Iris-versicolor’ and ‘Iris-versicolor’
+of iris.csv dataset.
+Provide the codes with outputs and explain everything that you do in this step.
+
+
+
+import pandas as pd
+from sklearn import preprocessing
+
+df = pd.read_csv(r'C:\Users\rutuja\Desktop\dataset\Mall_Customers.csv')
+df
+
+df.describe()
+
+df.min()
+
+df.groupby(['Gender'])['Age'].mean()
+
+df.groupby(['Gender'])['Age'].median()
+
+df.groupby(['Gender'])['Age'].std()
+
+df.groupby(['Gender'])['Annual Income (k$)'].mean()
+
+df.groupby(['Gender'])['Annual Income (k$)'].median()
+
+df.groupby(['Gender'])['Annual Income (k$)'].std()
+
+df.groupby(['Gender'])['Age'].median()
+
+df.groupby(['Gender']).mean()
+
+df.groupby(['Gender']).median()
+
+df.groupby(['Gender']).min()
+
+df.groupby(['Gender']).max()
+
+x = df.drop(axis=1, columns=['Gender'])
+x
+
+enc = preprocessing.OneHotEncoder()
+enc_df = pd.DataFrame(enc.fit_transform(df[['Gender']]).toarray())
+enc_df
+
+df_encode = x.join(enc_df)
+df_encode

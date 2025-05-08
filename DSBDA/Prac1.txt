@@ -1,0 +1,80 @@
+Data Wrangling, I
+Perform the following operations using Python on any open source dataset (e.g., data.csv)
+1. Import all the required Python Libraries.
+2. Locate an open source data from the web (e.g., https://www.kaggle.com). Provide a clear
+ description of the data and its source (i.e., URL of the web site).
+3. Load the Dataset into pandas dataframe.
+4. Data Preprocessing: check for missing values in the data using pandas isnull(), describe()
+function to get some initial statistics. Provide variable descriptions. Types of variables etc.
+Check the dimensions of the data frame.
+5. Data Formatting and Data Normalization: Summarize the types of variables by checking
+the data types (i.e., character, numeric, integer, factor, and logical) of the variables in the
+data set. If variables are not in the correct data type, apply proper type conversions.
+6. Turn categorical variables into quantitative variables in Python.
+In addition to the codes and outputs, explain every operation that you do in the above steps and
+explain everything that you do to import/read/scrape the data set.
+
+
+
+import pandas as pd
+from sklearn import preprocessing
+
+
+df = pd.read_csv(r'C:\Users\Sumeet\OneDrive\Desktop\Dataset\Iris.csv')
+
+df
+
+df.head()
+
+df.head(10)
+
+df.tail()
+
+
+df.tail(10)
+
+df.index
+
+
+df.columns
+
+df.columns.values
+
+df.shape
+
+
+df.dtypes
+
+df.describe()
+
+
+min_max_scaler = preprocessing.MinMaxScaler()
+
+x = df.iloc[:,:4]
+
+x_scaled = min_max_scaler.fit_transform(x)
+
+df_normalised = pd.DataFrame(x_scaled)
+
+df_normalised
+
+df['Species'].unique()
+
+features_df = df.drop(columns=['Species'])
+features_df
+
+enc = preprocessing.OneHotEncoder()
+enc_df = (enc.fit_transform(df[['Species']]))
+x = pd.DataFrame(enc_df)
+x
+
+df_encode=features_df.join(x)
+
+
+df_encode
+
+
+df_encode.rename(columns={0:'Sentosa',1:'Versicolor',2:'Verginica'},inplace=True)
+
+
+df_encode
